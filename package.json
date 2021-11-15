@@ -1,0 +1,27 @@
+{
+  "name": "arvid-soporte",
+  "version": "0.0.1",
+  "description": "Code Source oficial del discord bot Arvid Soporte",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fwdlz/arvid-soporte.git"
+  },
+  "author": "fwdlz#0753",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fwdlz/arvid-soporte/issues"
+  },
+  "homepage": "https://github.com/fwdlz/arvid-soporte#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
