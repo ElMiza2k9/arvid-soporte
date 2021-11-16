@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/fwdlz/arvid-soporte#readme",
   "dependencies": {
+    "captcha-canvas": "^3.1.0",
     "discord.js": "^13.3.1",
     "glob": "^7.2.0",
     "promisify": "^0.0.3"

@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, Webhook } = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "kick",
