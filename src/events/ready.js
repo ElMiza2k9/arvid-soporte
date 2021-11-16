@@ -1,7 +1,5 @@
-module.exports = {
-    name: "ready",
-    once: true,
-    async execute() {
-        console.log("ready");
-    }
-}
+const client = require("../../index");
+
+client.on("ready", () => {
+    console.log("Ready!")
+})

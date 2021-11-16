@@ -1,10 +1,20 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Replies with Pong!'),
-    async execute(interaction) {
-        await interaction.reply('Pong!');
+    name: "ping",
+    description: "Devuelve el ping del WebSocket",
+    type: 'CHAT_INPUT',
+    /**
+     *
+     * @param {Client} client
+     * @param {CommandInteraction} interaction
+     * @param {String[]} args
+     */
+    run: async (client, interaction, args) => {
+        const embed = new MessageEmbed()
+            .setColor('GREEN')
+            .setDescription(`WebSocket ping: \`${client.ws.ping}\`ms :ping_pong:`)
+
+        interaction.followUp({ embeds: [embed] });
     },
 };
