@@ -1,33 +1,21 @@
+
 const client = require("../../index");
 
-client.on("interactionCreate", async (interaction) => {
-    // Slash Command Handling
-    if (interaction.isCommand()) {
-        await interaction.deferReply({ ephemeral: false }).catch(() => { });
+client.on("messageCreate", async (message) => {
+    if (
+        message.author.bot ||
+        !message.guild ||
+        !message.content.toLowerCase().startsWith(client.config.prefix)
+    )
+        return;
 
-        const cmd = client.slashCommands.get(interaction.commandName);
-        if (!cmd)
-            return interaction.followUp({ content: "An error has occured " });
+    const [cmd, ...args] = message.content
+        .slice(client.config.prefix.length)
+        .trim()
+        .split(/ +/g);
 
-        const args = [];
+    const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
 
-        for (let option of interaction.options.data) {
-            if (option.type === "SUB_COMMAND") {
-                if (option.name) args.push(option.name);
-                option.options?.forEach((x) => {
-                    if (x.value) args.push(x.value);
-                });
-            } else if (option.value) args.push(option.value);
-        }
-        interaction.member = interaction.guild.members.cache.get(interaction.user.id);
-
-        cmd.run(client, interaction, args);
-    }
-
-    // Context Menu Handling
-    if (interaction.isContextMenu()) {
-        await interaction.deferReply({ ephemeral: false });
-        const command = client.slashCommands.get(interaction.commandName);
-        if (command) command.run(client, interaction);
-    }
+    if (!command) return;
+    await command.run(client, message, args);
 });

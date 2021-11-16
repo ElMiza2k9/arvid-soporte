@@ -1,19 +1,34 @@
-module.exports = {
-    name: "interactionCreate",
-    async execute(interaction, client) {
-        console.log(`${interaction.user.tag} in #${interaction.channel.name} uso una interaccion`)
 
-        if (!interaction.isCommand()) return;
+const client = require("../../index");
 
-        const command = client.commands.get(interaction.commandName);
+client.on("interactionCreate", async (interaction) => {
+    // Slash Command Handling
+    if (interaction.isCommand()) {
+        await interaction.deferReply({ ephemeral: false }).catch(() => { });
 
-        if (!command) return;
+        const cmd = client.slashCommands.get(interaction.commandName);
+        if (!cmd)
+            return interaction.followUp({ content: "Ocurrio un error..." });
 
-        try {
-            await command.execute(interaction);
-        } catch (error) {
-            console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+        const args = [];
+
+        for (let option of interaction.options.data) {
+            if (option.type === "SUB_COMMAND") {
+                if (option.name) args.push(option.name);
+                option.options?.forEach((x) => {
+                    if (x.value) args.push(x.value);
+                });
+            } else if (option.value) args.push(option.value);
         }
+        interaction.member = interaction.guild.members.cache.get(interaction.user.id);
+
+        cmd.run(client, interaction, args);
     }
-}
+
+    // Context Menu Handling
+    if (interaction.isContextMenu()) {
+        await interaction.deferReply({ ephemeral: false });
+        const command = client.slashCommands.get(interaction.commandName);
+        if (command) command.run(client, interaction);
+    }
+});
