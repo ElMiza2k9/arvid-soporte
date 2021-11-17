@@ -1,67 +1,11 @@
 
 const client = require("../../index");
-const { MessageAttachment, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 client.on("interactionCreate", async (interaction) => {
 
     timestamp = Date.now();
     unixTimestmap = Math.floor(timestamp / 1000);
-
-    if (interaction.isButton()) {
-        if (interaction.customId === "verify") {
-
-            if (!['910194622293233716'].includes(interaction.channel.id)) return interaction.followUp({ content: "No puedes ejecutar este comando.", ephemeral: true });
-
-            const { Captcha } = require("captcha-canvas");
-
-            const captcha = new Captcha()
-            captcha.async = false
-            captcha.addDecoy()
-            captcha.drawTrace()
-            captcha.drawCaptcha()
-
-            const attachment = new MessageAttachment(captcha.png, "captcha.png");
-
-            /* const embed = new MessageEmbed()
-                 .setTitle("Captcha ⛔")
-                 .setDescription(`❗ | Debes resolver este captcha
-             📛 | Tienes 15 segundos para resolverlo
-             `)
-                 .setColor('FUCHSIA')
-             interaction.user.send({ embeds: [embed], files: [attachment]})*/
-
-            interaction.reply({ content: `${interaction.user.toString()},\n❗ | Debes resolver el captcha para verificarte\n❗ | Tienes 15 segundos para resolverlo`, files: [attachment], ephemeral: true })
-            const filter = m => m.author.id === interaction.user.id;
-
-            const collector = interaction.channel.createMessageCollector({ filter, time: 15000 })
-
-            collector.on("collect", async m => {
-                setTimeout(() => {
-                    m.delete().catch(() => {})
-                }, 1000)
-                if (!m.content.startsWith(captcha.text)) {
-                    collector.stop()
-                   return interaction.followUp('Codigo incorrecto ❌').then((msg) => {
-                        setTimeout(() => {
-                            msg.delete().catch(() => {});
-                        }, 3000)
-                    })
-                }
-                const verified = new MessageEmbed()
-                .setColor('GREYPLE')
-                .setDescription(`
-                **El usuario ${interaction.user.toString()}, se ha verificado correctamente**
-                **Fecha:** <t:${unixTimestmap}>
-                 `)
-                client.logger.send({ embeds: [verified]})
-
-                await m.member.roles.add('910194512654123008')
-                return interaction.followUp({ content: "Fuiste verificado correctamente ✅", ephemeral: true })
-            })
-
-        }
-
-    }
 
     // Slash Command Handling
     if (interaction.isCommand()) {
