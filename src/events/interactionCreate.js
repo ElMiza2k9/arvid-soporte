@@ -32,7 +32,7 @@ client.on("interactionCreate", async (interaction) => {
             const embed2 = new MessageEmbed()
                 .setColor('RED')
                 .setDescription(`
-            **Un error ha ocurrido en el comando: kick**\n
+            **Un error ha ocurrido en una interaccion ${cmd.name}**\n
             **Fecha:** <t:${unixTimestmap}>\n
             **Error Log:** \`\`\`${err.stack}\`\`\` 
             `)
@@ -51,7 +51,7 @@ client.on("interactionCreate", async (interaction) => {
             const embed2 = new MessageEmbed()
                 .setColor('RED')
                 .setDescription(`
-            **Un error ha ocurrido en el comando: kick**\n
+            **Un error ha ocurrido en una interaccion ${command.name}**\n
             **Fecha:** <t:${unixTimestmap}>\n
             **Error Log:** \`\`\`${err.stack}\`\`\` 
             `)

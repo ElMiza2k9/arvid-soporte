@@ -21,7 +21,7 @@ module.exports = {
         captcha.drawTrace();
         captcha.drawCaptcha(); 
 
-        console.log(captcha.text); //log captcha text. 
+        console.log('Captcha del usuario: ' + interaction.user.id + ' Captcha:', captcha.text);  
         writeFileSync(`./temp/${interaction.user.id}.png`, captcha.png); 
 
         const file = new MessageAttachment(`./temp/${interaction.user.id}.png`)
