@@ -12,7 +12,7 @@ module.exports = {
         },
         {
             name: "razon",
-            description: "Menciona la razon de expulsion",
+            description: "Menciona la razon de baneo",
             type: 'STRING',
             required: false
         }
