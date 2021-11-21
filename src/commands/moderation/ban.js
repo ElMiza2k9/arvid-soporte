@@ -50,7 +50,7 @@ module.exports = {
                 .setFooter(server.name, server.iconURL())
 
             user.send({ embeds: [kickEmbed] }).then(async () => {
-                await user.ban({ reason: reason})
+                await user.ban({ reason: reason })
 
                 const embed3 = new MessageEmbed()
                     .setColor('GREEN')

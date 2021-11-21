@@ -66,8 +66,8 @@ module.exports = {
             interaction.editReply(`El usuario: **${user}** fue expulsado del servidor.`)
         } catch (err) {
             const embed2 = new MessageEmbed()
-            .setColor('RED')
-            .setDescription(`
+                .setColor('RED')
+                .setDescription(`
             **Un error ha ocurrido en el comando: kick**\n
             **Fecha:** <t:${unixTimestmap}>\n
             **Error Log:** \`\`\`${err.stack}\`\`\` 
