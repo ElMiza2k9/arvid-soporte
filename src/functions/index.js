@@ -49,7 +49,7 @@ module.exports = async (client) => {
                             {
                                 id: v.id,
                                 type: 'ROLE',
-                                permissions: true, s
+                                permission: true, s
                             },
                         ];
 
