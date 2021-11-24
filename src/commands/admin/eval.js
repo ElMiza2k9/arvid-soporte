@@ -27,7 +27,6 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setColor('GREEN')
-                .setTitle("Successful")
                 .addFields({
                     name: "**Tipo:**",
                     value: `\`\`\`prolog\n${typeof (evaled)}\`\`\``,
@@ -52,10 +51,9 @@ module.exports = {
                     name: "**Entrada:**",
                     value: `\`\`\`js\n${code}\`\`\``,
                 }, {
-                    name: "**Salida:**",
+                    name: "**Salida (ERROR):**",
                     value: `\`\`\`js\n${err}\`\`\``,
                 })
-                .setTitle("Error")
 
                 interaction.editReply({ embeds: [errorEmbed] });
         }

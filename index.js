@@ -4,7 +4,11 @@ const client = new Client({
     intents: 32767,
     disableEveryone: true
 });
-module.exports = client;
+
+process.on('unhandledRejection', err => {
+    console.log(`[ERROR]: Unhandled promise rejection: ${err.message}.`);
+    console.log(err);
+});
 
 //dotenv
 require("dotenv").config();
@@ -37,3 +41,5 @@ client.errlogger = errwebhook;
 require("./src/functions")(client);
 
 client.login(client.config.token);
+
+module.exports = client;
