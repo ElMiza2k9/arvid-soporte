@@ -3,6 +3,7 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "kick",
     description: "Expulsa a un usuario del servidor",
+    userPermission: ["MANAGE_MESSAGES"],
     options: [
         {
             name: "usuario",

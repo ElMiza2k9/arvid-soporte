@@ -3,6 +3,7 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ping",
     description: "Devuelve el ping del WebSocket",
+    userPermission: ["SEND_MESSAGES"],
     type: 'CHAT_INPUT',
     /**
      * @param {Client} client

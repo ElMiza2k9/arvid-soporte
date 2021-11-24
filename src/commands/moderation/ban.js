@@ -3,6 +3,7 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ban",
     description: "Banea a un usuario del servidor",
+    userPermission: ["MANAGE_MESSAGES"],
     options: [
         {
             name: "usuario",

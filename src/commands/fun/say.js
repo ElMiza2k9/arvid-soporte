@@ -3,6 +3,7 @@ const { Client, MessageEmbed, CommandInteraction } = require("discord.js");
 module.exports = {
     name: "say",
     description: "Repite lo que dices...",
+    userPermission: ["SEND_MESSAGES"],
     type: 'CHAT_INPUT',
     options: [
         {

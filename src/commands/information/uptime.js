@@ -5,6 +5,7 @@ module.exports = {
     name: "uptime",
     description: "Mira cuanto tiempo lleva activo el bot",
     type: 'CHAT_INPUT',
+    userPermission: ["SEND_MESSAGES"],
     /**
      * @param {Client} client
      * @param {CommandInteraction} interaction

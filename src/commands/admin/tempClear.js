@@ -4,6 +4,7 @@ const fs = require("fs");
 module.exports = {
     name: "tempclear",
     description: "Limpia los archivos de la carpeta 'temp'",
+    userPermission: ["ADMINISTRATOR"],
     type: 'CHAT_INPUT',
     /**
      * @param {Client} client
