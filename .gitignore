@@ -6,6 +6,3 @@ node_modules/
 
 # temp files
 temp/
-
-# eval command
-src/commands/admin/eval.js
