@@ -25,13 +25,45 @@ module.exports = async (client) => {
         client.slashCommands.set(file.name, file);
 
         if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
+        if (file.userPermissions) file.defaultPermission = false;
         arrayOfSlashCommands.push(file);
     });
     client.on("ready", async () => {
+        const guild = client.guilds.cache.get('906906665000009738')
+        await guild
+            .commands.set(arrayOfSlashCommands).then((cmd) => {
+                const getRoles = (commandNames) => {
+                    const permissions = arrayOfSlashCommands.find(x => x.name === commandNames).userPermissions;
 
-        await client.guilds.cache
-            .get("906906665000009738")
-            .commands.set(arrayOfSlashCommands);
+                    if (permissions) return null;
+                    return guild.roles.cache.filter((x) => x.permissions.has(permission) && !x.managed)
+                }
+
+                const fullPermissions = cmd.reduce((accumulator, x) => {
+                    const roles = getRoles(x.name);
+                    if (!roles) return accumulator;
+
+                    const permissions = roles.reduce((a, v) => {
+                        return [
+                            ...a,
+                            {
+                                id: v.id,
+                                type: 'ROLE',
+                                permissions: true, s
+                            },
+                        ];
+
+                    }, []);
+                    return [
+                        ...accumulator,
+                        {
+                            id: x.id,
+                            permissions,
+                        },
+                    ];
+                }, []);
+                guild.commands.permissions.set({ fullPermissions });
+            });
     });
 
 };
