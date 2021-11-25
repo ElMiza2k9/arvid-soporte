@@ -3,13 +3,13 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ping",
     description: "Devuelve el ping del WebSocket",
-    userPermission: ["SEND_MESSAGES"],
-    type: 'CHAT_INPUT',
+    permission: "SEND_MESSAGES",
     /**
      * @param {Client} client
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
+    type: "CHAT_INPUT",
     run: async (client, interaction, args) => {
         const embed = new MessageEmbed()
             .setColor('ORANGE')

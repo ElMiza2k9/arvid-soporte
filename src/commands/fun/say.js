@@ -3,8 +3,7 @@ const { Client, MessageEmbed, CommandInteraction } = require("discord.js");
 module.exports = {
     name: "say",
     description: "Repite lo que dices...",
-    userPermission: ["SEND_MESSAGES"],
-    type: 'CHAT_INPUT',
+    permission: "SEND_MESSAGES",
     options: [
         {
             name: "mensaje",
@@ -18,6 +17,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
+    type: "CHAT_INPUT",
     run: async (client, interaction, args) => {
         let msg = interaction.options.getString('mensaje');
 

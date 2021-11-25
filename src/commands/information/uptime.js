@@ -4,13 +4,13 @@ const ms = require("ms");
 module.exports = {
     name: "uptime",
     description: "Mira cuanto tiempo lleva activo el bot",
-    type: 'CHAT_INPUT',
-    userPermission: ["SEND_MESSAGES"],
+    permission: "SEND_MESSAGES",
     /**
      * @param {Client} client
      * @param {CommandInteraction} interaction
      * @param {String[]} args 
      */
+    type: "CHAT_INPUT",
     run: async (client, interaction, args) => {
 
         const time = ms(client.uptime, { long: true });

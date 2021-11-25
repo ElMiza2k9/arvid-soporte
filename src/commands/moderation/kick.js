@@ -3,7 +3,7 @@ const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 module.exports = {
     name: "kick",
     description: "Expulsa a un usuario del servidor",
-    userPermission: ["MANAGE_MESSAGES"],
+    permission: "MANAGE_MESSAGES",
     options: [
         {
             name: "usuario",
@@ -18,19 +18,19 @@ module.exports = {
             required: false
         }
     ],
-    type: 'CHAT_INPUT',
     /**
      * @param {Client} client
      * @param {CommandInteraction} interaction,
      * @param {String[]} args
      */
+    type: "CHAT_INPUT",
     run: async (client, interaction, args) => {
 
         const user = interaction.options.getMember('usuario');
         const server = interaction.guild;
         let reason = interaction.options.getString('razon');
 
-        if (!interaction.member.roles.cache.has(client.config.moderator_role)) return interaction.editReply({ content: "No puedes usar este comando.", ephemeral: true });
+       // if (!interaction.member.roles.cache.has(client.config.moderator_role)) return interaction.editReply({ content: "No puedes usar este comando.", ephemeral: true });
 
         if (user.id === client.user.id) return interaction.editReply({ content: "No puedes expulsarme a mi.", ephemeral: true });
 

@@ -4,8 +4,7 @@ const { inspect } = require("util");
 module.exports = {
     name: "eval",
     description: "Evalua codigo javascript",
-    type: 'CHAT_INPUT',
-    userPermission: ["ADMINISTRATOR"],
+    permission: "ADMINISTRATOR",
     options: [
         {
             name: "codigo",
@@ -19,6 +18,7 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args 
      */
+    type: "CHAT_INPUT",
     run: async (client, interaction, args) => {
         const code = interaction.options.getString('codigo')
         //if (!interaction.user.id === '673282658679259197') return interaction.editReply({ content: "No puedes usar este comando." });
